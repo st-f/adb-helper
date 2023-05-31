@@ -34,7 +34,7 @@ function clearCache {
 function findPackage {
     if [[ -z $finalPackageName ]] || [[ $previouslySelectedConfig != $selectedConfig ]]; then
       findPackagesInInstalledApps
-      echo "\n⚠️  Enter the number of the package to launch for variant $variant.\nThis setting will be saved. To reset that choice, refresh variants."
+      echo "\n📚 Enter the number of the package to launch for variant $variant.\nThis setting will be saved. To reset that choice, refresh variants."
       showPackagesChoices
       read -p "" PACKAGE_CHOICE
       packageIndex=$PACKAGE_CHOICE-1 # TODO memorise packageIndex in file
@@ -89,7 +89,6 @@ function findPackagesFromManifests {
                [[ ! "$packageName" = "com.amazon.alexa" ]] &&
                [[ ! "$packageName" = "com.amazon.profiles" ]]
             then
-              echo "prefix: $packageName"
               packagesArray+=($packageName)
             fi
           fi

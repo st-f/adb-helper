@@ -6,10 +6,7 @@
 ## Installation
 
 ```
-cd ~/Applications
-git clone git@github.com:st-f/adb-helper.git
-cd adb-helper
-sh installation.sh
+curl -O https://raw.githubusercontent.com/st-f/adb-helper/main/installation.sh
 ```
 
 ## About

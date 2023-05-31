@@ -17,11 +17,12 @@ emojisHelpComment="# Use this file to add emojis to variants.
 function getConfigsFromFiles {
   configStringArray=()
   while IFS= read -r line; do
-    configStringArray+=("$line") # Append line to the array
+    configStringArray+=("$line")
   done < $configsStringsFile
+
   configArray=()
   while IFS= read -r line; do
-    configArray+=("$line") # Append line to the array
+    configArray+=("$line")
   done < $configsFile
 }
 
@@ -43,12 +44,17 @@ function getSourcesSets {
     configStringArray+=("$variant")
     #echo "[$indexString] $variant"
   done<<<"$variants"
+  IFS=$'\n' sortedConfigArray=($(printf "%s\n" "${configArray[@]}"|sort -f))
+  configArray=("${sortedConfigArray[@]}")
+  IFS=$'\n' sortedConfigStringArray=($(printf "%s\n" "${configStringArray[@]}"|sort -f))
+  configStringArray=("${sortedConfigStringArray[@]}")
 }
 
 function echoVariants {
   getVariantEmojisStringsFromFile
   echo "\nChoose a variant:\n"
   index=0
+
   for config in "${configStringArray[@]}"; do
      ((index++))
      indexString=$(printf "%02d" $index)
@@ -58,10 +64,7 @@ function echoVariants {
 }
 
 function initEmojiFile {
-  if [ ! -f $variantEmojisStringsFile ]
-  then
-    printf "$emojisHelpComment" > $variantEmojisStringsFile
-  fi
+  printf "$emojisHelpComment" > $variantEmojisStringsFile
 }
 
 function applyEmojisToVariants {
@@ -97,9 +100,9 @@ function runGradle {
     clean=""
   fi
   variant="${configArray[$selectedConfig]}"
-  installCommand=$(echo $variant | cut -d ":" -f 2)
-  echo "\n⚙️  $clean $installCommand\n" # on $DEVICE\n
-  ./gradlew $clean $installCommand #-d $DEVICE # TODO this command install on ALL connected devices! Why?
+  installCommand=":$variant"
+  echo "\n⚙️ ./gradlew $clean $installCommand\n" # on $DEVICE\n
+  ./gradlew -q $clean $installCommand #-d $DEVICE # TODO this command install on ALL connected devices! Why?
 }
 
 echo "\n🤖 Compile & install"
@@ -114,6 +117,8 @@ if [[ -z $DEVICE ]]; then
   return
 fi
 export ANDROID_DEVICE=$DEVICE # change default device for gradle - TODO not working!
+mkdir -p .idea
+
 initEmojiFile
 
 while true; do

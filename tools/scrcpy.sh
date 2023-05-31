@@ -16,7 +16,6 @@ while $scrcpyRunning; do
     return
   fi
   trap '{ scrcpyRunning=false; return; }' INT
-  echo "isDeviceTV: $(isDeviceTV)"
   if [ $(isDeviceTV) == true ]; then
     width=712
   else
