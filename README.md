@@ -6,7 +6,7 @@
 ## Installation
 
 ```
-curl -O https://raw.githubusercontent.com/st-f/adb-helper/main/installation.sh
+curl -s https://raw.githubusercontent.com/st-f/adb-helper/main/installation.sh | bash
 ```
 
 ## About
