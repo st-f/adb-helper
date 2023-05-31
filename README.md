@@ -9,6 +9,13 @@
 curl -s https://raw.githubusercontent.com/st-f/adb-helper/main/installation.sh | bash
 ```
 
+Optionally you will also need to install:
+
+- [scrcpy](https://github.com/Genymobile/scrcpy) to mirror devices / emulators
+- [imagemagick](https://imagemagick.org/index.php) to resize screenshots
+
+Both are available in Homebrew
+
 ## About
 
 Android development is about working in between repetitive tasks:
