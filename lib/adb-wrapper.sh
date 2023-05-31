@@ -30,7 +30,7 @@ for (( x=0; x < $NUMIDS; x++ )); do
 done
 if [[ 1 -eq "$NUMIDS" ]]; then
 	DEVICE=$IDS
-	echo $DEVICE > ~/BashScripts/.adbe
+	echo $DEVICE > ~/Applications/adb-helper/.adbe
 	x=0
 	DEVICE_NAME="${MANUFACTURER_VERSIONS[x]} ${PRODUCTS_NAMES[x]} (SDK ${SDK_VERSIONS[x]})"
 	echo "🤖 Device detected: $DEVICE_NAME"

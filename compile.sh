@@ -97,7 +97,8 @@ function runGradle {
     clean=""
   fi
   variant="${configArray[$selectedConfig]}"
-  installCommand=$(echo $variant | cut -d ":" -f 2)
+  #installCommand=$(echo $variant | cut -d ":" -f 2)
+  installCommand=$(echo ":$variant")
   echo "\n⚙️  $clean $installCommand\n" # on $DEVICE\n
   ./gradlew $clean $installCommand #-d $DEVICE # TODO this command install on ALL connected devices! Why?
 }

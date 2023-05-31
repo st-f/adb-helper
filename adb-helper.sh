@@ -1,5 +1,5 @@
 #!/bin/bash
-declare -a adbHelperRoot=~/Documents/Projects/2022-adb-helper/adb-helper # root path of program
+declare -a adbHelperRoot=~/Applications/adb-helper # root path of program
 source $adbHelperRoot/config.sh
 folder=$(basename "$PWD");
 echo "\n🛎  ADB Helper 🛎 "
